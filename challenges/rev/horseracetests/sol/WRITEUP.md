@@ -1,0 +1,1 @@
+find AES key for Godot by using string XREFs to isolate the pck decryption scheme in the wrapper binary, then just use some tool i.e. https://github.com/GDRETools/gdsdecomp to get the Godot project and spoof a request to the game server with winner as "Blue".

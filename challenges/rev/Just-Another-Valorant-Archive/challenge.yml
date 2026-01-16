@@ -1,0 +1,8 @@
+# This file represents the base specification of your challenge. It is used by
+name: Just Another Valorant Archive
+author: halogen
+category: rev
+description: A JAVA app you never knew you needed :) 
+
+flags:
+    - blahaj{1_pref3r_C0unt3r_5tr1ke_tw0}

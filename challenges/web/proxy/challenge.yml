@@ -1,0 +1,7 @@
+name: Proxy bypass
+author: fern
+category: web
+description: Bypass my firewall to get a flag!
+
+flags:
+  - blahaj{w0w_f1rew4ll_bypass}

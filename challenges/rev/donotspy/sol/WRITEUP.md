@@ -1,0 +1,1 @@
+throw into ilspy and manually parse the R2R assembly (IL is stomped), reconstruct the packed binary and toss _that_ into ilspy and win

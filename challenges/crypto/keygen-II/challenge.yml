@@ -1,0 +1,9 @@
+name: "keygen II"
+author: "mintocha"
+category: crypto
+description: Guest keys have been removed for security. Now, a 1024 byte long key is used. Can you still get your hands on an admin key?
+
+flags:
+    - blahaj{AES_P0A_C4n_3nCrypT_zmv92308alf}
+ 
+

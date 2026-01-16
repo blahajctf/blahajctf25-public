@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Heat Abnormal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 40px auto;
+            background-image: url({{url_for('static', filename='background.jpg')}});
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: "Elms Sans", sans-serif;
+            color: white;
+        
+        }
+        form {
+            background: linear-gradient (
+              to bottom, rgba(255, 255, 255, 0.3), rgba(255, 165, 0, 0.3)
+            );
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-radius: 10px;
+            font-size: 17px;
+          
+        }
+
+        h2 {
+          text-align: center;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: white;
+            border: 1px solid white;
+            background: linear-gradient(
+              to bottom,
+              rgba(255, 255, 255, 0.3),
+              rgba(255, 165, 0, 0.3)
+          );
+        }
+
+        button {
+            color: white;
+            font-family: "Elms Sans";
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid white;
+            cursor: pointer;
+            background: linear-gradient(
+              to bottom,
+              rgba(255, 255, 255, 0.3),
+              rgba(255, 165, 0, 0.3)
+          );
+            transition: 0.3s;
+        }
+          
+        button:hover {
+            filter: invert(1);
+        } 
+    </style>
+</head>
+<body>
+
+    <h2>your message has been received!</h2>
+    <img src={{url_for('static', filename='mizumizu.png')}} /> 
+</body>
+</html>

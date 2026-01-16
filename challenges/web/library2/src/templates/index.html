@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Submit a Scripture</h2>
+    <p>Any scholar may submit a URL pointing to a scripture. The Head Librarian will visit it shortly.</p>
+
+    {% if message %}
+        <p class="success">{{ message }}</p>
+    {% endif %}
+    
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="/submit_scripture" method="post">
+        <div style="background-color: #fffaf0; border: 1px dashed #8b4513; padding: 15px; margin-bottom: 20px;">
+            <h3>The Gatekeeper's Riddle</h3>
+            <p>To prevent spiritual spam, please provide a string whose SHA256 hash starts with <strong>{{ difficulty }}</strong> zeros.</p>
+            
+            <label for="pow_solution">Riddle Solution:</label>
+            <input type="text" id="pow_solution" name="pow_solution" required placeholder="Solve automatically below...">
+            
+            <br><br>
+            <button type="button" id="solve-pow-button" data-difficulty="{{ difficulty }}">Ponder the riddle</button>
+            <p id="solver-status" style="font-style: italic; color: #664228; font-size: 0.9em;"></p>
+        </div>
+
+        <label for="url">URL of the Scripture:</label>
+        <input type="text" id="url" name="url" size="50" required>
+        <button type="submit">Submit for Review</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
+    <script>
+        function generateRandomPrefix(length) {
+            if (window.crypto && window.crypto.getRandomValues) {
+                const randomBytes = new Uint8Array(length);
+                window.crypto.getRandomValues(randomBytes);
+                return Array.from(randomBytes).map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+            else {
+                console.warn('crypto.getRandomValues not available. Using Math.random() as a fallback.');
+                let result = '';
+                const characters = '0123456789abcdef';
+                for (let i = 0; i < length * 2; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                return result;
+            }
+        }
+        const solveButton = document.getElementById('solve-pow-button');
+        const solutionInput = document.getElementById('pow_solution');
+        const solverStatus = document.getElementById('solver-status');
+
+        if (solveButton) {
+            solveButton.addEventListener('click', async () => {
+                solveButton.disabled = true;
+                solverStatus.textContent = 'Pondering the riddle...';
+
+                const difficulty = parseInt(solveButton.dataset.difficulty, 10);
+                const targetPrefix = '0'.repeat(difficulty);
+
+                const randomPrefix = generateRandomPrefix(5);
+                console.log(`Starting PoW search with random prefix: ${randomPrefix}`);
+
+                let counter = 0;
+                let solution = '';
+                while (true) {
+                    const solutionAttempt = randomPrefix + counter;
+                    const currentHash = sha256(solutionAttempt);
+
+                    if (currentHash.startsWith(targetPrefix)) {
+                        solution = solutionAttempt;
+                        solverStatus.textContent = `✅ The elders accept your answer! (${counter} attempts)`;
+                        console.log(`Solution: ${solution} -> Hash: ${currentHash}`);
+                        break;
+                    }
+
+                    counter++;
+                    if (counter % 50000 === 0) {
+                        solverStatus.textContent = `Pondering the riddle... (Pondered: ${counter} times)`;
+                        await new Promise(resolve => setTimeout(resolve, 0));
+                    }
+                }
+
+                if (solutionInput) {
+                    solutionInput.value = solution;
+                }
+                solveButton.disabled = false;
+            });
+        }
+    </script>
+{% endblock %}

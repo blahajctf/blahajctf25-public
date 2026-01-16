@@ -1,0 +1,7 @@
+name: "no decompile"
+author: fern89
+category: rev
+description: Can you decompile this executable?
+
+flags:
+  - blahaj{n0_d1SaSs3Mbly}

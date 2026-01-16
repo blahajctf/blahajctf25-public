@@ -1,0 +1,10 @@
+name: trilingual
+author: scuffed
+category: rev
+description: Moshi mosheeeesh! Has anata ever wanted to speak multiple languages? ฉันใส่สามภาษาไว้ในไฟล์เดียว!
+
+flags:
+  - blahaj{dr_bronners_pure_castile_magic_soap_18n1}
+
+hints:
+  - To run a COM file in DOSBox, you need to mount the current directory as a drive in DOSBox using `dosbox.exe -c "mount c ."` and rename the file extension of the file to `.COM`. The included `DOSBox-0.74-3.7z` will help.

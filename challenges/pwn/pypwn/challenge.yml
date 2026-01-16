@@ -1,0 +1,7 @@
+name: Python Pwn
+author: fern
+category: pwn
+description: python pwn but this time it's actually real pwn
+
+flags:
+  - blahaj{1_l0v3_PyThoN_funny_snake}

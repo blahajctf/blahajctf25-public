@@ -1,0 +1,14 @@
+name: This incident will be reported
+author: blahaj
+category: hardware
+difficulty: hard
+description: |
+  You are not in the sudoers file. This incident will be reported.
+
+  What's this [fancy-sounding technology](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7466/16410.pdf)?
+
+  Note: Please exercise caution when physically interating with hardware!
+  Refer to the guide for what you shouldn't be doing.
+
+flags:
+  - blahaj{e3p10m_1s_e_m2gic}

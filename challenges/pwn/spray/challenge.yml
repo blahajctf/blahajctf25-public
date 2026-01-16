@@ -1,0 +1,7 @@
+name: spray
+author: FS 
+category: pwn
+description: doesn't matter which road you take...you end up at the same destination (NOTE. Refer to the instructions found in notes.txt. Flag is at /dev/vda. If you have a local solve, open a ticket on discord and ping me @FS for the real flag)
+
+flags:
+  - blahaj{all_roads_lead_to_rome_insert_rabbit_pointing_at_watch_gif}

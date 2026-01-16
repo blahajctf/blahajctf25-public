@@ -1,0 +1,6 @@
+services:
+  proxy:
+    privileged: false
+    build: .
+    ports:
+      - "1337:1337"

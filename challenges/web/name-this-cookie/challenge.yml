@@ -1,0 +1,10 @@
+name: Name This Cookie!
+author: jiajie
+category: web
+description: |-
+  I've been trying to think of the perfect name for my cookie. "flag" just isn't cutting it anymore ...
+
+  Untangle this miniature XSS riddle!
+
+flags:
+  - blahaj{n4m3l3ss_c0ok1e}

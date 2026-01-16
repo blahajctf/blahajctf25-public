@@ -1,0 +1,4 @@
+blahaj{1_l0v3_PyThoN_funny_snake}
+
+thanks to cane, scuffed, and jiajie for playtesting
+please open a ticket if you think you found an unintend (ie any pure-python (no pwn) pyjail escapes) (you'll still get the flag i just want to know if it can be cheesed)

@@ -1,0 +1,1 @@
+bitflip the private key to get a prime number then trivially sign

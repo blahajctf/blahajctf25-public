@@ -1,0 +1,1 @@
+attached solve script is a theoretical solve, essentially you just perform a pixnapping attack where you use the overlapping info of the font to generate a search tree for the digits. you get 3 bits of information against 10 digits, so you will at best have 80% certainty (since you will have 2 sets of overlapping digits) per digit. this probability is still high enough to win.

@@ -1,0 +1,7 @@
+name: Easy Pwn
+author: fern
+category: pwn
+description: This is an easy pwn challenge
+
+flags:
+  - blahaj{funny_upx_chal_160212}

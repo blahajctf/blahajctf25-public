@@ -1,0 +1,7 @@
+name: "Noisy image"
+author: fern89
+category: forensics
+description: Please read the flag from this noisy image.
+
+flags:
+  - blahaj{1_l0ve_no1s3_yay_2650}

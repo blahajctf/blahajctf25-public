@@ -1,0 +1,7 @@
+name: Command runner
+author: fern
+category: web
+description: Please run a command to read the flag
+
+flags:
+  - blahaj{such_r3curs1on_much_w0w}

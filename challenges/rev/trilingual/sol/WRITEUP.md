@@ -1,0 +1,1 @@
+let gpt tell you its ECDH + AES, then fix the unoptimized functions (linear to square and multiply instead), fetch the flag off the insecure server and decrypt it yourself.

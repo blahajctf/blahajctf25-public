@@ -1,0 +1,7 @@
+name: livestreamer
+author: scuffed
+category: forensics
+description: I didn't get to watch the latest stream by my favourite livestreamer! Thankfully, I had the stream open on my server and captured all the network traffic from it, so I can rewatch the VOD myself! 🙏 BLESS 🙏 (PS: the flag contained within `blahaj{}` is in ALL CAPS, no spaces)
+
+flags:
+  - blahaj{SIGNALSFROMWYOMING}

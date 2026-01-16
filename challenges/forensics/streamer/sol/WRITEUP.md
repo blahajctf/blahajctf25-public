@@ -1,0 +1,1 @@
+http mjepg, export the jpegs using wireshark, piece the video together to view the flag in the noise.

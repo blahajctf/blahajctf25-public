@@ -1,0 +1,7 @@
+name: polyRSA
+author: azazo
+category: crypto
+description: RSA is so boring and outdated. I spiced things up a bit; surely it's still secure!.
+
+flags:
+  - blahaj{D0N7_r0LL_Y0ur_0WN_CRyp70_0r_47_l34s7_83_sM4R73r_7h4n_7h15}

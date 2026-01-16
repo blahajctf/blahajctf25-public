@@ -1,0 +1,7 @@
+name: "Hidden files"
+author: fern89
+category: forensics
+description: Find the flag hidden in this zip file!
+
+flags:
+  - blahaj{i_hid_the_pdf}

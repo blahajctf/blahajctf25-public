@@ -1,0 +1,7 @@
+name: fastnotes
+author: FS 
+category: pwn
+description: I made a new note taking app that's special...have a look!
+
+flags:
+  - blahaj{a_little_bit_of_this_and_a_little_bit_of_that_ahh_chall}

@@ -1,0 +1,7 @@
+name: "baconlettucesalami"
+author: "warri"
+category: crypto
+description: make me a delicious sandwich. Note that this instance may take a tad bit longer than usual to initialise (abt 10-40 seconds approx.) Make a ticket if nothing is seen on console after 2-3 minutes!
+
+flags:
+    - blahaj{sandwich-f0rgery}

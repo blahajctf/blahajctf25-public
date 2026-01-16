@@ -1,0 +1,11 @@
+name: "badcryption II"
+author: "mintocha"
+category: crypto
+description: We have intercepted outgoing intel from an encrypted spy app. Can you decrypt the message?
+
+flags:
+    - blahaj{3XTr3me_p0g_a54aCk}
+ 
+hints:
+    - Is there a way to make the large prime smaller?
+

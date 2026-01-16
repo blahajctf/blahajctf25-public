@@ -1,0 +1,7 @@
+name: shark tank
+author: wrenches
+category: pwn
+description: Sharks, I've come to ask for a 10% share of my company in exchange for the flag.
+
+flags:
+  - blahaj{we're_not_staying_afloat_we're_going_bankrupt}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hajware key system V2</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container" style="flex-direction: column;">
+    <h1>NOTICE: Guest keys are no longer supported due to rampant tampering</h1>
+
+    <div class="card" style="flex-direction: column;">
+      <label>Generate a trial product key</label>
+      <button id="genkey">Generate</button>
+      <pre id="keyresult"></pre>
+      <label>Note: Only one valid key may exist at a time per IP</label>
+    </div>
+
+    <div class="card">
+      <label for="text">Enter product key:</label>
+      <input id="text" type="text" placeholder="Enter your product key to activate!" />
+      <button id="send">Validate</button>
+      <pre id="result"></pre>
+    </div>
+
+    <div class="card">
+      <button id="ping">Sanity test</button>
+      <pre id="pong"></pre>
+    </div>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+name: doNotSpy
+author: scuffed
+category: rev
+description: I've decided to add some anti-cheat measures to my .NET games. Try decompiling this one!
+
+flags:
+  - blahaj{its_like_vba_stomping_but_for_c_sharp}

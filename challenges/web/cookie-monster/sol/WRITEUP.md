@@ -1,0 +1,1 @@
+smuggle KID field to sign with an empty key

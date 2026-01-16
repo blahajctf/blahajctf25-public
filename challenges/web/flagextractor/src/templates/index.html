@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flag Extractor</title>
+        <link href="/static/css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Flag Extractor</h1>
+                <p>Send us any file and we'll try to exif out the flag!</p>
+                <h2>Powered by exiftool :3</h2>
+            </header>
+            <main>
+                {% block content %}
+                <h3>Upload file directly:</h3>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" />
+                    <button type="submit">Upload</button>
+                </form>
+                
+                <h3>Or fetch from URL:</h3>
+                <form action="/fetch" method="post">
+                    <input type="text" name="url" placeholder="http://example.com/image.jpg" />
+                    <button type="submit">Fetch</button>
+                </form>
+                {% endblock %}
+            </main>
+        </div>
+    </body>
+</html>

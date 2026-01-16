@@ -1,0 +1,13 @@
+name: bedtime story
+author: blahaj
+category: hardware
+difficulty: medium
+description: |
+  My grandmother used to read me BlahajCTF flags at bedtime for me to fall asleep to.
+  Now, I've moved to Manchester and miss her stories.
+
+  Note: Please exercise caution when physically interating with hardware!
+  Refer to the guide for what you shouldn't be doing.
+
+flags:
+  - blahaj{b3D_fjGc4eavl}

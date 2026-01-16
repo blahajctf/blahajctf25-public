@@ -1,0 +1,119 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Application Portal</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        input, button { width: 100%; padding: 10px; margin: 5px 0; box-sizing: border-box; }
+        code { background-color: #e0e0e0; padding: 3px 5px; border-radius: 3px; }
+        #solve-pow-button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+        #solve-pow-button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        #solver-status { font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Submit Your Job Application</h1>
+    <p>Please upload your resume as an HTML file. An administrator will review it shortly.</p>
+    
+    <form action="/" method="post" enctype="multipart/form-data">
+        <h3>Step 1: Proof-of-Work</h3>
+        <div class="challenge">
+            <p>To prevent spam, please provide a string whose SHA256 hash starts with <strong>{{ difficulty }} leading zeroes</strong> (e.g., <code>{{ '0' * difficulty }}...</code>).</p>
+        </div>
+        
+        <label for="pow_solution">Your Solution String:</label>
+        <input type="text" id="pow_solution" name="pow_solution" required>
+        
+        <!-- Auto-solver button and status display -->
+        <button type="button" id="solve-pow-button" data-difficulty="{{ difficulty }}">Solve PoW Automatically</button>
+        <p id="solver-status"></p>
+
+        <h3>Step 2: Upload Application</h3>
+        <label for="file">HTML Application File:</label>
+        <input type="file" id="file" name="file" accept=".html" required>
+        
+        <br><br>
+        <button type="submit">Submit Application</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
+    <script>
+        function generateRandomPrefix(length) {
+            // Use crypto.getRandomValues if available (preferred)
+            if (window.crypto && window.crypto.getRandomValues) {
+                const randomBytes = new Uint8Array(length);
+                window.crypto.getRandomValues(randomBytes);
+                return Array.from(randomBytes).map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+            // Otherwise, use a less secure Math.random() fallback
+            else {
+                console.warn('crypto.getRandomValues not available. Using Math.random() as a fallback.');
+                let result = '';
+                const characters = '0123456789abcdef';
+                for (let i = 0; i < length * 2; i++) { // length * 2 because each byte is 2 hex chars
+                    result += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                return result;
+            }
+        }
+
+
+        // --- Automatic PoW Solver Logic ---
+        const solveButton = document.getElementById('solve-pow-button');
+        const solutionInput = document.getElementById('pow_solution');
+        const solverStatus = document.getElementById('solver-status');
+
+        if (solveButton) {
+            solveButton.addEventListener('click', async () => {
+                // Disable the button to prevent multiple clicks while solving
+                solveButton.disabled = true;
+                solverStatus.textContent = 'Solving... This may take a moment. The page will not freeze.';
+
+                const difficulty = parseInt(solveButton.dataset.difficulty, 10);
+                const targetPrefix = '0'.repeat(difficulty);
+
+                // 1. Generate 5 random bytes (10 hex characters) to create a unique prefix for the search.
+                const randomPrefix = generateRandomPrefix(5);
+
+                console.log(`Starting PoW search with random prefix: ${randomPrefix}`);
+
+                let counter = 0;
+                let solution = '';
+
+                // 2. Start the brute-force loop.
+                while (true) {
+                    const solutionAttempt = randomPrefix + counter;
+
+                    // --- CORRECTION HERE ---
+                    // Call the library function directly. It's globally available as `sha256`.
+                    const currentHash = sha256(solutionAttempt);
+
+                    if (currentHash.startsWith(targetPrefix)) {
+                        solution = solutionAttempt;
+                        solverStatus.textContent = `✅ Solution found after ${counter} attempts!`;
+                        console.log(`Solution: ${solution} -> Hash: ${currentHash}`);
+                        break;
+                    }
+
+                    counter++;
+
+                    // 3. To prevent the browser from freezing, we yield control back to the event loop
+                    // every 50,000 iterations. This allows the UI to update.
+                    if (counter % 50000 === 0) {
+                        solverStatus.textContent = `Solving... (Attempts: ${counter})`;
+                        // This allows the browser to render updates and handle other tasks.
+                        await new Promise(resolve => setTimeout(resolve, 0));
+                    }
+                }
+
+                // 4. Populate the input field and re-enable the button.
+                if (solutionInput) {
+                    solutionInput.value = solution;
+                }
+                solveButton.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spy agent intel tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <h1>Send Encrypted Message</h1>
+    <input type="text" id="message" placeholder="Enter message">
+    <button onclick="sendMessage()">Send</button>
+    <div id="response"></div>
+
+    <script>
+
+        function power(base, exponent, modulus) {
+            if (modulus === 1n) return 0n;
+            let result = 1n;
+            base = base % modulus;
+            while (exponent > 0n) {
+                if (exponent % 2n === 1n) {
+                    result = (result * base) % modulus;
+                }
+                exponent = exponent / 2n;
+                base = (base * base) % modulus;
+            }
+            return result;
+        }
+
+        function randomBigInt(min, max) {
+            const range = max - min + 1n;
+            const bytes = Math.ceil(range.toString(2).length / 8);
+            let randomBytes = new Uint8Array(bytes);
+            window.crypto.getRandomValues(randomBytes);
+            let randomBig = BigInt('0x' + Array.from(randomBytes, byte => byte.toString(16).padStart(2, '0')).join(''));
+            return min + (randomBig % range);
+        }
+
+        // i want to find privkey
+        // pubkey = 5 ** privkey mod p 
+        const p = 49278241238643848738524823448834114960140393694771426989126687n;
+        const g = 5n;
+        const privateKey = randomBigInt(1n, p - 1n);
+        const publicKey = power(g, privateKey, p);
+        let keyWord;
+
+        window.onload = function() {
+            fetch('/exchange', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    type: 'key_exchange',
+                    prime: p.toString(),
+                    generator: g.toString(),
+                    public_key: publicKey.toString()})
+            })
+            .then(res => res.json())
+            .then(data => {
+                const serverPublic = BigInt(data.server_public_key);
+                const sharedKey = power(serverPublic, privateKey, p);
+                keyWord = CryptoJS.SHA256(sharedKey.toString());
+            });
+        };
+
+        function encrypt(message) {
+            const iv = CryptoJS.lib.WordArray.random(16);
+            const encrypted = CryptoJS.AES.encrypt(message, keyWord, {iv: iv});
+            return [iv, encrypted];
+        }
+
+        function sendMessage() {
+            const msg = document.getElementById('message').value;
+            let [iv, encryptedMsg] = [...encrypt(msg)];
+            fetch('/message', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    type: 'encrypted_message',
+                    iv: iv.toString(),
+                    encrypted: encryptedMsg.toString()
+                })
+            })
+            .then(res => res.json());
+        }
+    </script>
+</body>
+</html>

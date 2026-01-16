@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Monster Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'monster-blue': '#0057b7',
+                        'cookie-brown': '#d2691e',
+                    },
+                    fontFamily: {
+                        'display': ['"Fredoka One"', 'cursive'],
+                        'body': ['"Open Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-body">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-monster-blue text-white shadow-xl hidden md:flex flex-col">
+            <div class="h-20 flex items-center justify-center border-b border-blue-600">
+                <i class="fas fa-cookie-bite text-3xl mr-2 text-cookie-brown bg-white rounded-full p-1"></i>
+                <span class="text-xl font-display">Admin Panel</span>
+            </div>
+            <nav class="flex-grow p-4 space-y-2">
+                <a href="#" class="block px-4 py-3 bg-blue-700 rounded-lg font-bold"><i class="fas fa-chart-line mr-3"></i> Dashboard</a>
+                <a href="#" class="block px-4 py-3 hover:bg-blue-600 rounded-lg transition"><i class="fas fa-pen-nib mr-3"></i> Create Post</a>
+                <a href="#" class="block px-4 py-3 hover:bg-blue-600 rounded-lg transition"><i class="fas fa-users mr-3"></i> Subscribers</a>
+                <a href="#" class="block px-4 py-3 hover:bg-blue-600 rounded-lg transition"><i class="fas fa-cog mr-3"></i> Settings</a>
+            </nav>
+            <div class="p-4 border-t border-blue-600">
+                <button onclick="logout()" class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-bold transition">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Topbar -->
+            <header class="bg-white shadow-sm h-20 flex items-center justify-between px-6 z-10">
+                <button class="md:hidden text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h2 class="text-2xl font-bold text-gray-800">Overview</h2>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-500">Welcome, <span class="font-bold text-monster-blue">CookieFan123</span></span>
+                    <img src="https://ui-avatars.com/api/?name=Cookie+Monster&background=0057b7&color=fff" class="h-10 w-10 rounded-full border-2 border-cookie-brown">
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-monster-blue">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Total Cookies</p>
+                                <h3 class="text-2xl font-bold text-gray-800" id="stat-cookies">Loading...</h3>
+                            </div>
+                            <div class="p-3 bg-blue-100 rounded-full text-monster-blue">
+                                <i class="fas fa-cookie text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-cookie-brown">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Total Posts</p>
+                                <h3 class="text-2xl font-bold text-gray-800" id="stat-posts">Loading...</h3>
+                            </div>
+                            <div class="p-3 bg-orange-100 rounded-full text-cookie-brown">
+                                <i class="fas fa-newspaper text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Hunger Level</p>
+                                <h3 class="text-2xl font-bold text-gray-800">CRITICAL</h3>
+                            </div>
+                            <div class="p-3 bg-green-100 rounded-full text-green-500">
+                                <i class="fas fa-exclamation-triangle text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post Table -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="font-bold text-lg text-gray-800">Published Blog Posts</h3>
+                        <a href="/" class="text-sm text-monster-blue hover:underline">View Site <i class="fas fa-external-link-alt ml-1"></i></a>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-gray-600 text-sm uppercase leading-normal">
+                                    <th class="py-3 px-6">ID</th>
+                                    <th class="py-3 px-6">Title</th>
+                                    <th class="py-3 px-6">Category</th>
+                                    <th class="py-3 px-6">Date</th>
+                                    <th class="py-3 px-6 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-600 text-sm font-light" id="posts-table-body">
+                                <!-- JS will populate this -->
+                                <tr>
+                                    <td colspan="5" class="py-6 text-center">
+                                        <i class="fas fa-spinner fa-spin text-monster-blue text-2xl"></i><br>
+                                        Authentication check in progress...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function getCookie(cname) {
+        let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        async function loadDashboard() {
+            const token = getCookie('Token');
+            
+            if (!token) {
+                window.location.href = '/'; // Redirect if no token
+                return;
+            }
+
+            try {
+                const response = await fetch('/admin/data', {
+                    method: 'GET',
+                });
+
+                if (response.status === 401) {
+                    alert("Session expired. Please login again.");
+                    window.location.href = '/';
+                    return;
+                }
+
+                const data = await response.json();
+                renderDashboard(data);
+
+            } catch (error) {
+                console.error("Error loading dashboard", error);
+                document.getElementById('posts-table-body').innerHTML = `<tr><td colspan="5" class="text-center py-4 text-red-500">Error loading data</td></tr>`;
+            }
+        }
+
+        function renderDashboard(data) {
+            // Update Stats
+            document.getElementById('stat-cookies').innerText = data.cookies;
+            document.getElementById('stat-posts').innerText = data.posts.length;
+
+            // Update Table
+            const tbody = document.getElementById('posts-table-body');
+            tbody.innerHTML = ''; // Clear loading spinner
+
+            data.posts.forEach(post => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-gray-200 hover:bg-gray-50 transition";
+                tr.innerHTML = `
+                    <td class="py-3 px-6 font-bold text-monster-blue">#${post.id}</td>
+                    <td class="py-3 px-6 font-medium text-gray-800">${post.title}</td>
+                    <td class="py-3 px-6">
+                        <span class="${post.tag_color} py-1 px-3 rounded-full text-xs font-bold">${post.tag}</span>
+                    </td>
+                    <td class="py-3 px-6">${post.date}</td>
+                    <td class="py-3 px-6 text-center">
+                        <div class="flex item-center justify-center space-x-3">
+                            <button class="text-blue-500 hover:text-blue-700 transform hover:scale-110 transition">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-yellow-500 hover:text-yellow-700 transform hover:scale-110 transition">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-red-500 hover:text-red-700 transform hover:scale-110 transition" onclick="deleteRow(this)">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deleteRow(btn) {
+            if(confirm("Me eat this post? (Delete?)")) {
+                const row = btn.closest('tr');
+                row.style.opacity = '0';
+                setTimeout(() => row.remove(), 300);
+            }
+        }
+
+        function logout() {
+            document.cookie = 'Token=; Max-Age=0; path=/;'; // Delete the token cookie
+            window.location.href = '/';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+name: "PSYCHOBOOST"
+author: "wrenches"
+category: pwn
+description: I PWN FOR TOUGH CROWDS
+
+flags:
+    - "blahaj{P4LKIA_CRY_SAMPL3_D0T_W4V}"

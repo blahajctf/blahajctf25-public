@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greener yuri!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Momo+Trust+Display&display=swap" rel="stylesheet">
+    <style>
+        body {
+            max-width: 750px;
+            background-color: white;
+            background-image: url('{{url_for('static', filename='bg.png')}}');
+            margin: 40px auto;
+            line-height: 1.6;
+            font-family: 'Momo Trust Display';
+        }
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            background-color: white;
+            border-radius: 250px;
+            margin: 0 0 20px;
+            border: 2px solid white; 
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .stretch {
+          transform: scaleY(1.05);
+          width: 175px;
+          line-height: 30px;
+          position: absolute;
+          top: 25px;
+          left: 50px;
+          white-space: 'pre';
+          filter: drop-shadow(2px 2px 65px #ececec);
+        }
+
+        .stretch span {
+          cursor: pointer;
+        }
+
+        .flag {
+          position: absolute;
+          bottom: 5px;
+          left: 50px;
+        }
+
+        .paper {
+            width: 600px;
+            padding: 40px;
+            background: repeating-linear-gradient(
+                to bottom,
+                #ffffff,
+                #ffffff 28px,
+                #cce4ff 29px
+            );
+            border: 1px solid #ccc;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .shark {
+          font-family: 'Mochiy Pop P One';
+          font-size: 100px;
+          position: absolute;
+          font-weight: 400;
+        }
+
+        .main {
+          width: 750px;
+          height: 750px;
+          margin: auto;
+          position: relative;
+          outline: 10px solid gray;
+          background-color: #b0f810;
+          z-index: 5;
+          overflow: hidden;
+    }
+
+        .shark {
+          overflow: hidden;
+          width: 125%;
+          position: absolute;
+          left: -10px;
+          bottom: -10;
+          z-index: 2;
+          filter: drop-shadow(0px 0px 150px white) drop-shadow(0px 0px 25px white);
+        }
+
+        .string {
+          position: absolute;
+          font-family: 'Mochiy Pop P One';
+          top: 50px;
+          font-size: 20px;
+          left: 300px;
+        }
+
+        h1 {
+          z-index: 3;
+        }
+
+        .circle {
+          color: white;
+          background-color: white;
+          border-radius: 250px;
+          position: absolute;
+          font-size: 20px;
+          top: 250px;
+          left: 250px;
+          z-index: 10;
+        }
+
+        form {
+          background-color: #b0f810;
+          font-size: 20px;
+          margin: 20px auto;
+          padding: 30px;
+          text-align: center;
+        }
+
+        .row {
+      margin: auto;
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+        .row span {
+      flex: 0 0 auto;
+      margin-right: 10px;
+    }
+
+      input[type=submit] {
+        font-size: 20px;
+        font-family: 'Momo Trust Display';
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid black;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      input[type=submit]:hover {
+        background-color: #b0f810;
+      }
+
+      .message {
+        text-decoration: underline;
+        text-align: center;
+        background-color: white;
+        font-size: 25px;
+        padding-inline: 50px;
+        padding-block: 25px;
+        border: 2px solid black;
+      }
+    </style>
+</head>
+<body>
+      {% if message %}
+      <div class='message'>{{ message }}</div>
+      {% endif %}
+    <br><br><br>
+    <div class='main'>
+      <h1 class='stretch'>the shark she was interested in wasn't a shark at all!</h1>
+      <img class='shark' src={{url_for('static', filename='blahaj.png')}}>
+      <span class='string'>かわいいブローハイの情報セキュリティ大 会</span>
+
+    </div>
+    <br><br>
+    <form action='/' method='post'>
+      <div style="text-align: justify;">alternative rock darlings 'blahajctf' proudly present their new album, "the shark she was interested in wasn't a shark at all!<br><br>want to preorder? prove yourself as a true fan! name all 10 songs in order, to receive a special preorder code!</div>
+     <hr>
+    <br>
+
+      <div class='row'>
+        <span>song 1:</span> <input name='song_1' type='text'>
+      </div>
+            <div class='row'>
+        <span>song 2:</span> <input name='song_2' type='text'>
+      </div>
+            <div class='row'>
+        <span>song 3:</span> <input name='song_3' type='text'>
+      </div>
+            <div class='row'>
+        <span>song 4:</span> <input name="song_4" type='text'>
+      </div>
+            <div class='row'>
+        <span>song 5:</span> <input name="song_5" type='text'>
+      </div>
+            <div class='row'>
+        <span>song 6:</span> <input name="song_6" type='text'>
+      </div>
+            <div class='row'>
+        <span>song 7:</span> <input name="song_7" type='text'>
+      </div>
+            <div class='row'>
+        <span>song 8:</span> <input name="song_8" type='text'>
+      </div>
+            <div class='row'>
+        <span>song 9:</span> <input name='song_9' type='text'>
+      </div>
+            <div class='row'>
+        <span>song 10:</span> <input name='song_10' type='text'>
+      </div>
+      <input type='submit'><br><br>
+
+      <i>built with Flask.</i>
+      <br><br>
+   </form>
+</body>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const h1 = document.querySelector(".stretch");
+    const text = h1.textContent;
+
+    h1.textContent = "";
+
+    const words = text.split(" ");
+
+    words.forEach((word, index) => {
+
+        const wordSpan = document.createElement("span");
+        wordSpan.style.display = "inline-block";  // keeps word intact
+
+        word.split("").forEach(char => {
+            const charSpan = document.createElement("span");
+            charSpan.textContent = char;
+            charSpan.style.display = "inline-block";
+            charSpan.style.transition = "0.2s ease";
+            wordSpan.appendChild(charSpan);
+
+            charSpan.addEventListener("mouseenter", () => {
+                charSpan.style.transform = "scale(1.4) rotate(8deg)";
+                charSpan.style.color = "#ff4080";
+            });
+
+            charSpan.addEventListener("mouseleave", () => {
+                charSpan.style.transform = "";
+                charSpan.style.color = "";
+            });
+        });
+
+        h1.appendChild(wordSpan);
+
+        if (index < words.length - 1) {
+            const space = document.createElement("span");
+            space.textContent = " ";
+            h1.appendChild(space);
+        }
+    });
+});
+</script>
+</html>

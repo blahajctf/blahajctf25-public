@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sharktel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            max-width: 700px;
+            background-color: #4f8caf;
+            color: white;
+            background-image: url('{{url_for('static', filename='bg.png')}}');
+            margin: 40px auto;
+            line-height: 1.6;
+            font-family: 'Lilita One';
+        }
+
+        .flag {
+            margin-block: 20px;
+            filter: drop-shadow(2px 2px 0px black);
+        }
+
+        .main {
+            width: 700px;
+            margin: auto;
+            font-size:20px;
+            text-align: center;
+        }
+
+        img {
+          width:100%;
+         }
+
+        .writeup {
+          width: 500px;
+          margin: auto;
+          font-size: 15px;
+          line-height: 16px;
+          font-family: 'Arial';
+          text-align: justify;
+        }
+
+    /* wave animation */
+@keyframes wave {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+/* every character gets animated with a staggered delay */
+.flag span {
+    display: inline-block;
+    animation: wave 1.6s ease-in-out infinite;
+    transition: 0.3s;
+    }
+
+.flag span:hover {
+    color: lightblue;
+    cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div class='main'>
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fc.tenor.com%2FUeKgzOj4lTkAAAAM%2Fblahaj-ikea.gif&f=1&ipt=6252757c9a62a3abd183e1a580914f4eb01d525c859b1969cd38226450d54173">
+    <div class='flag' id='wave'>blahaj{my_l0ve_1s_4_r0ut3r_br0adcast1ng_t0_any0ne_who11_11sten}</div>
+    <div class='writeup'>
+      not particularly relevant to the challenge but permit me to speak for a little while. when i was 10 i cut my teeth on networking by trying to configure port forwarding for a minecraft server. it'd just be me, my friends, tcp/udp on the port 25565 and a dream. i never got it working, of course - i was 10 and i was stupid and i just didn't know enough about computers. but i look back on those memories of going to 192.168.1.254 fondly, the router interface being designed with -at max- 50 lines of css. the simplicity of it all beckons to calmer, more soothing times, and i find that particular shade of Menu Bar gray a warm cocoon for the inner child lying dormant within my heart somewhere. a honey-sweet lullaby tucked in between unsanitized &lt;td&gt; tags.
+    <br><br>
+        there's a sense of beauty in being a kid exploring the world like that. here are a thousand objects, devices, mechanisms, lines of code, bits of firmware, chips, blinking lights, cables, optical fibres, screens, hums and buttons, and here you are, a tiny little human in a body too small to contain all your curiosities. here is a map of a world millions have explored and contributed to and built with their own hands, and long after you outgrow these curiosities they will still remain there, denizens of a land kind enough to accommodate you, hold your hand through the YouTube tutorials and LogMeIn Hamachi installations and removing META_INF from a .jar file. for a little moment it scoops you up and contains you and keeps you warm. it's romantic to me - how could it not be?
+    <br><br>
+        ten years down the line i still get emotional thinking about it. a lot of my life is inescapably tethered to those halcyon days. i don't need handholding anymore. i know how to set up port-forwarding, i know a lot more things than i used to back when i was 10. but sometimes i'm doing my university work, configuring my home network and writing code for chips and circuits and doing things 10 year old me could not have even fathomed and it's easy to forget that in the dull, drab minutiae of quotidian student life there's still a 10 year old tucked within our chests somewhere who'd stare at who you are now with awe and wonder, and i find it important to protect him. keep him safe and unsated and curious. to me, nothing else is worth much more than that.
+    </div>
+    </div>
+  </body>
+
+<script>
+const text = document.getElementById("wave");
+const content = text.textContent;
+text.textContent = "";  // clear original
+
+[...content].forEach((ch, i) => {
+    const span = document.createElement("span");
+    span.textContent = ch;
+    span.style.animationDelay = `${i * 0.05}s`;
+    text.appendChild(span);
+});
+</script>
+
+</html>
+

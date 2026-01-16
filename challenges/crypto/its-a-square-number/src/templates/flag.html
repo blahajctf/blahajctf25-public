@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>its a square number</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  perspective: 800px;
+  overflow: hidden;
+  font-family: 'Orbitron';
+}
+
+.cube {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  transform-style: preserve-3d;
+  animation: spin 6s linear infinite;
+  transform: rotateX(25deg) rotateZ(10deg);
+    }
+
+.face {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  backface-visibility: visible;
+}
+
+.front  { transform: translateZ(250px); }
+.back   { transform: rotateY(180deg) translateZ(250px); }
+.right  { transform: rotateY(90deg) translateZ(250px); }
+.left   { transform: rotateY(-90deg) translateZ(250px); }
+.top    { transform: rotateX(90deg) translateZ(250px); }
+.bottom { transform: rotateX(-90deg) translateZ(250px); }
+
+@keyframes spin {
+  0%   { transform: rotateX(25deg) rotateY(0deg) rotateZ(10deg); }
+  100% { transform: rotateX(25deg) rotateY(360deg) rotateZ(10deg); }
+}
+</style>
+<body>
+  <div class="cube">
+      <div class="face front">{{flag}}</div>
+      <div class="face back">{{flag}}</div>
+      <div class="face right">{{flag}}</div>
+      <div class="face left">{{flag}}</div>
+      <div class="face top">{{flag}}</div>
+      <div class="face bottom">{{flag}}</div>
+  </div>
+</body>
+</html>
+

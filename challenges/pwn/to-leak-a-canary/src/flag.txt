@@ -1,0 +1,1 @@
+blahaj{printf_and_its_null_bytes}

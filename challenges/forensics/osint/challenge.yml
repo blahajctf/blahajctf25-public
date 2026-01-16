@@ -1,0 +1,7 @@
+name: OSINT IN THE BIG 2025
+author: scuffed
+category: forensics
+description: Find out my location! The flag format is blahaj{GPS_Latitude,GPS_Longitude} to 8 decimal places, e.g. blahaj{1.01234567,-1.01234567}
+
+flags:
+  - blahaj{1.39784803,103.73951859}

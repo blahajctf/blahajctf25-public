@@ -1,0 +1,1 @@
+replace exec with print

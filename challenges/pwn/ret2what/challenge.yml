@@ -1,0 +1,8 @@
+name: ret2...what
+author: FS 
+category: pwn
+description: Don't tap the glass was a fire ass album (P.S. challenge has nothing to do with the album and remember to run the PATCHED binary (chall_patched))
+
+flags:
+  - blahaj{0p3ratOr_cAn_y05_p1ck_th@t_phOne?}
+

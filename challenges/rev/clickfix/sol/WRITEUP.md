@@ -1,0 +1,1 @@
+run the malicious command to get the VBS script, simple deobfuscation (its a rotation either +5 for uppercase or -5 for lowercase) to get the flag

@@ -1,0 +1,7 @@
+name: babyrev
+author: scuffed
+category: rev
+description: Use your favourite decompiler or debugger to solve this challenge!
+
+flags:
+  - blahaj{w3lc0m4_70_r3v3r53_3n91n33r1n9!!!}

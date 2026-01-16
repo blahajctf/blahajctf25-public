@@ -1,0 +1,3 @@
+Intended solve path: do tcache poisoning to overwrite certain global pointers to puts() and main() to jump back to start of main() and get libc leak. then another tcache poisoning to overwrite puts() to system() and write /bin/sh into some random chunk
+
+Potential issues: player did not use patched binary and gets wrong libc offset...

@@ -1,0 +1,7 @@
+name: the fisherman
+author: scuffed
+category: rev
+description: BlahajCTF made "flag.txt" available to you. You may access the document through this link.
+
+flags:
+  - blahaj{KeNa_Ph1ShEd_a9a1n...H0W_cAN_L1Ke_7H15}

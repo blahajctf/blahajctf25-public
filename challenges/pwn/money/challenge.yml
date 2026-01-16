@@ -1,0 +1,18 @@
+name: I love money
+author: samuzora
+category: pwn
+description: |
+  > Ransomware in the big 2025 🥀
+  > 
+  > To make things six or seven times harder for my client's victims,
+  > I've created an in-memory RaaS (Ransomware-as-a-Service) solution!
+  > Instead of encrypting files, my solution now encrypts Python objects
+  > in-memory, so the victim can never use Python again!
+  >
+  > If your exploit works on local docker but not on remote, you may run it
+  > against this mirror.
+  >
+  > Mirror: 139.59.245.199 12137
+
+flags:
+  - blahaj{d0es_th1s_c0un7_a5_a_bl0ckch41n_ch4ll?}

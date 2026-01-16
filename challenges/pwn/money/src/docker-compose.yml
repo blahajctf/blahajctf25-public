@@ -1,0 +1,5 @@
+services:
+  money:
+    build: ./
+    ports:
+      - 5000:5000

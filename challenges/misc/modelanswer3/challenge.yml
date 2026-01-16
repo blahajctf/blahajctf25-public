@@ -1,0 +1,7 @@
+name: "Model Answer 3"
+author: fern89
+category: misc
+description: I trained a model that only outputs an image of the flag when the correct secret key is given! Otherwise, all you get is a black image. The key is an array of 32 1s and 0s, completely random.
+
+flags:
+  - blahaj{r3vErS3D_1mAge}

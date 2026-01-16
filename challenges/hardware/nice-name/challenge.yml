@@ -1,0 +1,12 @@
+name: nice name
+author: blahaj
+category: hardware
+difficulty: guided
+description: |
+  You have a nice name! I wanna know your name!
+
+  Note: Please exercise caution when physically interating with hardware!
+  Refer to the guide for what you shouldn't be doing.
+
+flags:
+  - blahaj{c00l_harDwAr3}

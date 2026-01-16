@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Sacred Texts (Admin View)</h2>
+    <p>These texts are only accessible to the head librarian from the temple grounds.</p>
+    <ul>
+        {% for file in files %}
+            <li><a href="{{ url_for('get_scripture', filename=file) }}" target="_blank">{{ file }}</a></li>
+        {% else %}
+            <li>No scriptures found in the archive.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

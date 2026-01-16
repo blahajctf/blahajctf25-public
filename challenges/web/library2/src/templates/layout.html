@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ancient Scripture Library</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="user-nav">
+            {% if session.username %}
+                <span>Welcome, {{ session.username }}</span>
+                {% if session.username == 'admin' %}
+                    <a href="{{ url_for('list_scriptures') }}">Protected Archives</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </nav>
+        
+        <h1>The Imperial Library of Ancient Scrolls</h1>
+        <div id="motd-container">
+            <p class="motd">Receiving wisdom from the heavens...</p>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>Preserving wisdom for generations.</p>
+    </footer>
+
+    <script>
+        function fetchMotd() {
+            fetch('/api/motd')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('motd-container');
+                    container.innerHTML = '';
+                    let index = 0;
+                    while (data[index] != null) {
+                        const p = document.createElement('p');
+                        p.className = 'motd';
+                        p.innerHTML = "Message from the Sages: " + data[index];
+                        container.appendChild(p);
+                        index++;
+                    }
+                })
+                .catch(error => {
+                    console.error("Could not fetch wisdom:", error);
+                    const container = document.getElementById('motd-container');
+                    container.innerHTML = '<p class="motd error">The connection to the spirits has been lost.</p>';
+                });
+        }
+        window.onload = function() {
+            fetchMotd();
+            setInterval(fetchMotd, 20000);
+        };
+    </script>
+</body>
+</html>

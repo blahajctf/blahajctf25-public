@@ -1,0 +1,7 @@
+name: killswitch
+author: wrenches
+category: forensics
+description: strobe lights hit the killswitch. file is at https://drive.google.com/file/d/1wU20flMr-OD2oLzEeEP8RTeyZi94rQEI/view?usp=sharing
+
+flags:
+  - blahaj{angels_in_camo_they've_been_sneak_deleting}

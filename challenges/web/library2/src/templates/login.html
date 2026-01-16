@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Enter the Library</h2>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    <form method="post" id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="submit" id="loginBtn">Login</button>
+    </form>
+
+    <script>
+        function isPrimitive(value) {
+            return value !== Object(value);
+        }
+        function merge(target, source) {
+            for (let key in source) {
+                if (isPrimitive(target[key])) {
+                    target[key] = source[key];
+                } else {
+                    merge(target[key], source[key]);
+                }
+            }
+        }
+        
+        window.addEventListener('message', (event) => {
+            let loginData = {
+                user: { name: "" },
+                pass: ""
+            };
+
+            let parsedData;
+            try {
+                parsedData = (typeof event.data === 'string') ? JSON.parse(event.data) : event.data;
+            } catch (e) {
+                console.error("Invalid JSON in postMessage");
+                return;
+            }
+            merge(loginData, parsedData);
+            if (loginData.user && loginData.user.name) {
+                document.getElementById('username').value = loginData.user.name;
+            }
+            if (loginData.pass) {
+                document.getElementById('password').value = loginData.pass;
+            }
+            if (parsedData.action === 'clickLogin') {
+                console.log("Automatically clicking login button...");
+                document.getElementById('loginBtn').click();
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,7 @@
+name: "babyRSAchallenge"
+author: "warri"
+category: crypto
+description: Lets start things off with a simple RSA challenge!
+
+flags:
+    - blahaj{meanwhile-there-was-that-other-one-in-2024_LNC...}

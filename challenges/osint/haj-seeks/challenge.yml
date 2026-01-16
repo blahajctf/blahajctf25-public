@@ -1,0 +1,11 @@
+name: The Haj Seeks
+author: bwemowp
+category: osint
+description: >
+  Secrets are hidden in the heavens, above the location in the BlahajCTF Minecraft server at [mc.blahaj.sg]. 500 blocks
+  from spawn in a straight line awaits the guardians of the seas, and the Haj seeks for its flag...
+
+  Note: Please do not destroy/grief any components of the challenge :(
+
+flags:
+  - blahaj{w0rld_0f_bl0cks}

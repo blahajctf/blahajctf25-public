@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Crumb - Cookie Monster Blog</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'monster-blue': '#0057b7',
+                        'cookie-brown': '#d2691e',
+                        'crumb-tan': '#f4a460',
+                    },
+                    fontFamily: {
+                        'display': ['"Fredoka One"', 'cursive'],
+                        'body': ['"Open Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fredoka One', cursive;
+        }
+        .shaking-element:hover {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .cookie-cursor {
+            cursor: pointer;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d2691e; 
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0522d; 
+        }
+    </style>
+</head>
+<body class="bg-blue-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-monster-blue text-white shadow-lg sticky top-0 z-50 border-b-4 border-cookie-brown">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-20">
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex-shrink-0 shaking-element cursor-pointer" onclick="window.scrollTo(0,0)">
+                        <i class="fas fa-cookie-bite text-4xl text-cookie-brown border-2 border-white rounded-full p-1 bg-white"></i>
+                        <span class="ml-2 text-2xl font-display tracking-wider">The Daily Crumb</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="/login" class="text-yellow-300 hover:text-white hover:bg-red-500 px-3 py-2 rounded-md text-sm font-medium transition duration-300 border border-yellow-300 hover:border-red-500">
+                                <i class="fas fa-lock mr-1"></i> Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="toggleMobileMenu()" class="bg-blue-700 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-blue-600 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-blue-800" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-900">Home</a>
+                <a href="#recipes" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700">Recipes</a>
+                <a href="#rants" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700">Rants</a>
+                <a href="/login" class="block px-3 py-2 rounded-md text-base font-medium text-yellow-300 hover:bg-red-600">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-blue-600 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <!-- Background pattern of circles/cookies -->
+            <svg width="100%" height="100%">
+                <pattern id="cookie-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <circle cx="20" cy="20" r="10" fill="#000" />
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#cookie-pattern)" />
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-5xl md:text-7xl font-display text-white mb-4 drop-shadow-lg">
+                ME WANT COOKIE!
+            </h1>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-8 font-body">
+                Welcome to the only place on internet that understands the true meaning of life: round, baked, chocolatey goodness.
+            </p>
+            <div class="flex justify-center gap-4">
+                <button onclick="document.getElementById('latest').scrollIntoView({behavior: 'smooth'})" class="bg-cookie-brown text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-amber-700 transform hover:scale-105 transition duration-300 border-b-4 border-amber-900">
+                    Read Latest
+                </button>
+                <button onclick="spawnCookie()" class="bg-white text-monster-blue font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transform hover:scale-105 transition duration-300">
+                    Give Cookie 🍪
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="latest">
+        
+        <!-- Featured Post -->
+        <div class="bg-white rounded-xl shadow-xl overflow-hidden mb-12 border-2 border-blue-100">
+            <div class="md:flex">
+                <div class="md:flex-shrink-0 bg-gray-200 md:w-1/2 relative h-64 md:h-auto flex items-center justify-center overflow-hidden group">
+                    <!-- SVG Cookie Representation -->
+                    <div class="transform transition duration-500 group-hover:scale-110">
+                        <svg viewBox="0 0 200 200" width="200" height="200">
+                            <circle cx="100" cy="100" r="90" fill="#d2691e" />
+                            <circle cx="60" cy="60" r="10" fill="#3e2723" opacity="0.8" />
+                            <circle cx="120" cy="50" r="12" fill="#3e2723" opacity="0.8" />
+                            <circle cx="90" cy="100" r="15" fill="#3e2723" opacity="0.8" />
+                            <circle cx="140" cy="110" r="11" fill="#3e2723" opacity="0.8" />
+                            <circle cx="70" cy="140" r="13" fill="#3e2723" opacity="0.8" />
+                            <circle cx="120" cy="150" r="9" fill="#3e2723" opacity="0.8" />
+                        </svg>
+                    </div>
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 m-2 rounded-full uppercase tracking-wide">Hot & Fresh</div>
+                </div>
+                <div class="p-8 flex flex-col justify-center">
+                    <div class="uppercase tracking-wide text-sm text-monster-blue font-semibold">Opinion Piece</div>
+                    <h2 class="block mt-1 text-3xl leading-tight font-bold text-gray-900 hover:underline">Why Oatmeal Raisin is a Betrayal of Trust</h2>
+                    <p class="mt-2 text-gray-600">
+                        Me bite into cookie expecting explosion of chocolate. Instead? Fruit. Dried fruit. Why world so cruel? This not cookie. This breakfast disguising as dessert. Me explain why this illegal...
+                    </p>
+                    <div class="mt-6">
+                        <a onclick="openModal()" class="text-cookie-brown font-bold hover:text-amber-800 flex items-center">
+                            Read full rant <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipes">
+            
+            <!-- Post 1 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col h-full">
+                <div class="h-48 bg-blue-100 flex items-center justify-center">
+                    <i class="fas fa-glass-milk text-6xl text-blue-300">🥛</i>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center mb-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Study</span>
+                        <span class="text-gray-500 text-xs">2 hours ago</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Optimal Dunking Times</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">
+                        Scientific study: 3 seconds is too crunch. 10 seconds is disaster (cookie fall in milk). The golden ratio is 4.5 seconds.
+                    </p>
+                    <a onclick="openModal()" class="text-monster-blue font-semibold hover:underline mt-auto">Read More</a>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col h-full">
+                <div class="h-48 bg-yellow-100 flex items-center justify-center">
+                   <i class="fas fa-carrot text-6xl text-orange-400"></i>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center mb-2">
+                        <span class="bg-orange-100 text-orange-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Warning</span>
+                        <span class="text-gray-500 text-xs">1 day ago</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Vegetables: A Conspiracy?</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">
+                        They green. They crunchy. But they no sweet. Me suspect they invented to make cookie taste even better by comparison.
+                    </p>
+                    <a onclick="openModal()" class="text-monster-blue font-semibold hover:underline mt-auto">Read More</a>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col h-full">
+                <div class="h-48 bg-gray-100 flex items-center justify-center">
+                    <div class="text-6xl">🚩</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center mb-2">
+                        <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Guide</span>
+                        <span class="text-gray-500 text-xs">3 days ago</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">C is for CTF</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">
+                        An in-depth guide on how to solve cookie-themed Capture The Flag challenges. Me help you become cookie master!
+                    </p>
+                    <a onclick="openModal()" class="text-monster-blue font-semibold hover:underline mt-auto">Read More</a>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="font-display text-2xl text-white">The Daily Crumb</span>
+                    <p class="text-sm mt-1">© 2023 Sesame Street & Friends. No cookies harmed (okay, maybe some).</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+            <div class="mt-8 text-center border-t border-gray-700 pt-4 text-xs">
+                <p>Designed with <i class="fas fa-heart text-red-500"></i> and <i class="fas fa-cookie text-cookie-brown"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[60] flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden transform scale-95 transition-transform duration-300" id="modal-panel">
+            <div class="bg-gray-800 p-6 flex justify-between items-center border-b-4 border-monster-blue">
+                <h3 class="text-xl font-bold text-white"><i class="fas fa-user-shield mr-2"></i>Restricted</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white focus:outline-none">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-8">
+                <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-full bg-blue-100 mb-2">
+                        <i class="fas fa-user-astronaut text-4xl text-monster-blue"></i>
+                    </div>
+                    <p class="text-gray-600">Me restrict you.</p>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-6 py-4 text-center text-xs text-gray-500 border-t">
+                Secure Connection via CookieJar SSL
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-cookie-brown text-white px-6 py-4 rounded-lg shadow-2xl transform translate-y-[125%] transition-transform duration-500 flex items-center z-50">
+        <i class="fas fa-cookie-bite text-2xl mr-3"></i>
+        <div>
+            <h4 class="font-bold">YUM!</h4>
+            <p class="text-sm">You gave a cookie!</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Admin Modal Logic
+        function openModal() {
+            const modal = document.getElementById('modal');
+            const panel = document.getElementById('modal-panel');
+            
+            modal.classList.remove('hidden');
+            // Small timeout to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                panel.classList.remove('scale-95');
+                panel.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const panel = document.getElementById('modal-panel');
+            
+            modal.classList.add('opacity-0');
+            panel.classList.remove('scale-100');
+            panel.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal if clicking outside
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Fun interaction: Spawn a cookie visual or effect
+        function spawnCookie() {
+            // Show toast
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-[125%]');
+            
+            // Create falling cookie
+            const cookie = document.createElement('div');
+            cookie.innerHTML = '<i class="fas fa-cookie"></i>';
+            cookie.style.position = 'fixed';
+            cookie.style.left = Math.random() * window.innerWidth + 'px';
+            cookie.style.top = '-50px';
+            cookie.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            cookie.style.color = '#d2691e';
+            cookie.style.zIndex = '100';
+            cookie.style.transition = 'top 1.5s ease-in, transform 1.5s linear';
+            
+            document.body.appendChild(cookie);
+
+            // Animate
+            setTimeout(() => {
+                cookie.style.top = window.innerHeight + 50 + 'px';
+                cookie.style.transform = `rotate(${Math.random() * 360}deg)`;
+            }, 50);
+
+            // Cleanup
+            setTimeout(() => {
+                cookie.remove();
+                toast.classList.add('translate-y-[125%]');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

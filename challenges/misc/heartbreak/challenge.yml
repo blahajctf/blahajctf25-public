@@ -1,0 +1,7 @@
+name: Heartbreak at 1200bps
+author: scuffed
+category: misc
+description: There is a mysterious transmission going on in the blahajCTF Discord server! Join the `#heartbreak` stage and take a listen. Maybe there's a message to decode?
+
+flags:
+  - blahaj{s0m3b0dy_jump_1n_my_c0mpu73r_s3rv3r_and_7ak3_7h3_1nf0rma710n_0u7}

@@ -1,0 +1,7 @@
+name: the oracle
+author: scuffed
+category: misc
+description: This is a blockchain treasury protocol and an associated price oracle. Since blockchain challenges are too difficult, we've simulated it in Python instead! Drain the treasury to claim the flag. (`sample.py` is an example script to allow you to interact with the "blockchain", `server.py` is the source code for the simulation.)
+
+flags:
+  - blahaj{flash_loaning_out_the_bank}

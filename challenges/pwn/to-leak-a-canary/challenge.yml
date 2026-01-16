@@ -1,0 +1,7 @@
+name: to leak a canary
+author: FS 
+category: pwn
+description: How to kill a canary? 
+
+flags:
+  - blahaj{printf_and_its_null_bytes}

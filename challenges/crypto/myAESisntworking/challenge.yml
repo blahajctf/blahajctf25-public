@@ -1,0 +1,7 @@
+name: "myAESisntworking"
+author: "warri"
+category: crypto
+description: my AES CBC decryption isn't working correctly, why???
+
+flags:
+    - blahaj{abstr4ct_ouT_th3_AESECB_n_it5_just_X0RRR}

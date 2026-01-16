@@ -1,0 +1,14 @@
+services:
+  heat-abnormal:
+    build: src/
+    ports:
+      - "5000:5000"
+    container_name: web-heat-abnormal
+    read_only: true
+
+  heat-abnormal-test:
+    build: test/
+    environment:
+      - CHAL_HOST=web-heat-abnormal
+      - CHAL_PORT=5000
+      - FLAG=blahaj{konn1ch1w4gw4n_m1nnasl1m3!!!!}

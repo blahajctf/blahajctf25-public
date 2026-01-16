@@ -1,0 +1,7 @@
+name: heart-shaped-box
+author: wrenches
+category: pwn
+description: rest in peace kurt cobain you would've loved ctfs
+
+flags:
+  - blahaj{oh, you like pwn? name 5 addresses in libc bro} 

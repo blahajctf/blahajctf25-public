@@ -1,0 +1,1 @@
+exiftool -c '%.8f' -GPSPosition 20251113_181404.jpg

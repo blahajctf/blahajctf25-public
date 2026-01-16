@@ -1,0 +1,1 @@
+Just rename the file to chal.pdf and you can see the flag. This is also solvable with binwalk.

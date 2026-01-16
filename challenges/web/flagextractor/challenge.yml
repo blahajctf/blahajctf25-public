@@ -1,0 +1,7 @@
+name: flagextractor
+author: mintocha
+category: web
+description: App that extracts hidden flags from images! ...Maybe that's not the only thing it can extract? P.S. Container is read only except /tmp.
+
+flags:
+  - blahaj{fl4g_3xtr4ct0r_succ3ss_4532619}

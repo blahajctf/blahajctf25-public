@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Seized</title>
+    <style>
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden; 
+            
+            
+            
+            background-image: url('background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #0d1b2a; 
+        }
+
+        /* DARK OVERLAY 
+           This adds a blue/black tint over your background image 
+           to ensure text is readable, similar to the original. */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 20, 40, 0.7); 
+            z-index: -1;
+        }
+
+        
+        .banner {
+            width: 100%;
+            background: linear-gradient(to bottom, #910b0b, #570000);
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 3px solid #360000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        
+        .container {
+            max-width: 1000px;
+            padding: 0 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px #000;
+            color: #e0e0e0;
+        }
+
+        .primary-text {
+            font-weight: 500;
+        }
+
+        .secondary-text {
+            font-size: 1rem;
+            max-width: 800px;
+            color: #c0c0c0;
+        }
+
+        
+        .emblem-container {
+            margin-top: 20px;
+        }
+
+        .emblem {
+            width: 220px; 
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+        }
+
+        
+        @media (max-width: 600px) {
+            .banner h1 { font-size: 1.8rem; }
+            p { font-size: 0.9rem; }
+            .emblem { width: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="overlay"></div>
+
+    
+    <div class="banner">
+        <h1>THIS WEBSITE HAS BEEN SEIZED</h1>
+    </div>
+
+    
+    <div class="container">
+        
+        
+        <p class="primary-text">
+            This domain has been seized by the Selachian Cyber Defence Force pursuant to a seizure warrant issued by the Blahaj District Court pursuant to 18 S.S.C. §§ 981 and 982, for violations of federal law.
+        </p>
+
+        
+        <p class="secondary-text">
+            This action has been taken in coordination with the Blahaj Office and the Department of Justice Computer Crime and Intellectual Property Section as part of a coordinated law enforcement action against illegal services.
+        </p>
+
+        
+        <div class="emblem-container">
+            
+            <img src="logo.png" alt="Official Seal" class="emblem">
+        </div>
+
+    </div>
+
+</body>
+</html>

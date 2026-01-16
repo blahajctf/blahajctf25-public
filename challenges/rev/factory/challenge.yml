@@ -1,0 +1,7 @@
+name: the factory
+author: scuffed
+category: rev
+description: I stole some company secrets before leaving my internship... but where are the secrets?! How do I read the flag?!
+
+flags:
+  - blahaj{h4W474R1_n10Ku_c3N71}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hello {{ user.username }}.</h1>
+
+    {% if user.gift_card_state == 1 %}
+        <h2>Redeem your gift card</h2>
+        <p>Hello please redeem your gift card. Worth 500$</p>
+        <form action="{{ url_for('use_gift_card') }}" method="post">
+            <button type="submit">Ok</button>
+        </form>
+        
+    {% else %}
+        <h2>Gift Card Redeemed</h2>
+        <p>You have already redeemed the gift card.</p>
+    {% endif %}
+{% endblock %}

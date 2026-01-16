@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>kiss me thru da scope</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+    <link rel="icon" href="{{url_for('static', filename='scope.png')}}">
+</head>
+
+<style>
+  body {
+    background-color: black;
+    color: white;
+  }
+
+  .main {
+    width: 750px;
+    height: 750px;
+    margin: auto;
+    position: relative;
+    text-align: center;
+  }
+
+  h1 {
+    color: white;
+    transform: scaleY(1.5);
+    filter: drop-shadow(2px 2px 0px rgb(102, 255, 153));
+    z-index: 5;
+  }
+
+  .scope {
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.25;
+    z-index: -1;
+    filter: none !important;
+  }
+
+  .taiga {
+    position: absolute;
+    width: 20%;
+  }
+
+  .get_otps {
+    color: white;
+    position: absolute;
+    left: 0.1%;
+    top: 50%;
+    transform: scaleY(2) translate(-50%, 0);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .special {
+    font-size: 50px;
+  }
+
+  table {
+    margin: auto;
+    font-size: 25px;
+    color: white;
+    table-layout: fixed;
+    width: 50%;
+    border-collapse: collapse;
+  }
+
+  td {
+    font-size: 20px;
+    width: 33%;
+  }
+
+  tr {
+    margin-inline: 10px;
+    border-bottom: 2px solid white;
+  }
+
+  input {
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    width: 100px;
+    padding: 10px;
+  }
+
+  .header td {
+    font-size: 35px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .submit {
+    font-family: 'Times New Roman';
+    font-size: 25px;
+    transform: scaleY(1.75);
+    background-color: black;
+    margin-block: 50px;
+    color: white;
+    border: 1px solid white;
+    padding-inline: 20px;
+    cursor: pointer;
+  }
+
+  .submit:hover {
+    color: rgb(102, 255, 153);
+    border: 1px solid rgb(102, 255, 153);
+  }
+  
+    pre {
+      text-align: left;
+      margin: auto;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
+      width: fit-content;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+  .otp {
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    font-size: 25px;
+    padding: 20px;
+  }
+
+  .otp input {
+    border-bottom: 2px solid white;
+  }
+
+  #message-modal {
+    color:red;
+    padding: 20px;
+    border: 2px solid red;
+    background-color: black;
+    position: absolute;
+    padding-inline: 75px;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+  }
+
+  .modal-content {
+    font-size: 30px;
+    transform: scaleX(1.25);
+  }
+
+  .success {
+    color: lime !important;
+    border: 2px solid lime !important;
+  }
+
+  .close-btn {
+    border: 1px solid red;
+    padding: 5px;
+    margin-top: 20px;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .close-btn:hover {
+    filter: invert(1);
+  }
+
+  input,input::placeholder {
+    font-family: "Times New Roman";
+  }
+
+  .table {
+    width: fit-content;
+    position: relative;
+  }
+
+  .table img {
+    position: absolute;
+  }
+
+  pre:before {
+    content: '.';
+    color: black;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-image: url('/static/taiga2.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    bottom: -50px;
+    right: -50px;
+    transform: rotate(20deg);
+  }
+
+  .small_filter {
+    filter: drop-shadow(1px 1px 0px rgb(102, 255, 153));
+  }
+
+  .big_filter {
+    filter: drop-shadow(1px 1px 0px rgb(102, 255, 153));
+  }
+
+  .decor {
+    color: rgb(102, 255, 153);
+    transform: scaleX(2);
+  }
+
+  .checksleft {
+    font-size: 25px;
+    transform: scaleX(3);
+    padding: 12px;
+  }
+</style>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("message-modal");
+    const closeBtn = document.querySelector(".close-btn");
+
+    if (modal) {
+      modal.style.display = "block";
+      closeBtn.onclick = () => modal.style.display = "none";
+      window.onclick = (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      };
+    }
+  });
+</script>
+
+<body>
+    <div class='main'>
+      {% if messages %}
+      <div id="message-modal" class="modal {% if success %} success {% endif %}">
+        <div class="modal-content">
+
+          {% for message in messages %}
+            <div class='message'>{{ message }}</div>
+          {% endfor %}
+           
+          <span class="close-btn {% if success %} success {% endif %}">close</span>
+
+
+        </div>
+      </div>
+      {% endif %}
+      <h1 class='special'>ROUND {{ round }}: ⌼</h1>
+      <h1>⌱ KISS ME THROUGH THE SCOPE ⌱</h1>
+      
+      <p class='small_filter' style='text-align: left'>
+Welcome to the Fresh OTP Service! The service is capable of generating a unique four-digit OTP embedded in an image, <a style='color: lightblue' href='/otp_generate'>like so.</a><br><br>
+
+Your goal? Guess 3 OTPs in a row... without seeing the generated OTP image for the round!<br><br>
+
+We're not going to leave you in the dark. Each round, you're allowed to read twelve pixel values of your choosing from the OTP image. Simply type in the x and y coordinates of the pixels you wish to read from the image into the table below and we will give you the hex representation of the pixel values at those coordinates.<br><br>
+
+Good luck and happy sniping!
+      </p>
+
+      <form action='/check_values' method='post'>
+
+      <div class='checksleft big_filter'>{{ 12 - checks }} checks left.</div>
+      
+      <div class='table big_filter'>
+      
+      <img class='scope' src={{url_for('static', filename='scope.png')}}>
+      <img class='taiga' style='bottom: -15px; left: 35px' src={{url_for('static', filename='tiger.png')}}>
+      <img class='taiga' style='top: 0px; right: 35px; transform: scale(-1, -1);' src={{url_for('static', filename='tiger.png')}}>
+
+      <table>
+      
+      <tr class='header'>
+        <td>x</td>
+        <td>y</td>
+        <td>hex</td>
+      </tr>
+
+      <tr>
+        <td><input type=text name="x1" value='{{prev_vals['x1']}}' ></td>
+        <td><input type=text name="y1" value='{{prev_vals['y1']}}' ></td>
+        <td>{{ results[0][-1] }}</td>
+      </tr> 
+
+      <tr>
+        <td><input type=text name="x2" value='{{prev_vals['x2']}}' ></td>
+        <td><input type=text name="y2" value='{{prev_vals['y2']}}' ></td>
+        <td>{{ results[1][-1] }}</td>
+      </tr> 
+ 
+      <tr>
+        <td><input type=text name="x3" value='{{prev_vals['x3']}}' ></td>
+        <td><input type=text name="y3" value='{{prev_vals['y3']}}' ></td>
+        <td>{{ results[2][-1] }}</td>
+      </tr> 
+ 
+      <tr>
+        <td><input type=text name="x4" value='{{prev_vals['x4']}}' ></td>
+        <td><input type=text name="y4" value='{{prev_vals['y4']}}' ></td>
+        <td>{{ results[3][-1] }}</td>
+      </tr> 
+ 
+      <tr>
+        <td><input type=text name="x5" value='{{prev_vals['x5']}}' ></td>
+        <td><input type=text name="y5" value='{{prev_vals['y5']}}' ></td>
+        <td>{{ results[4][-1] }}</td>
+      </tr> 
+ 
+      <tr>
+        <td><input type=text name="x6" value='{{prev_vals['x6']}}' ></td>
+        <td><input type=text name="y6" value='{{prev_vals['y6']}}' ></td>
+        <td>{{ results[5][-1] }}</td>
+      </tr> 
+
+      <tr>
+        <td><input type=text name="x7" value='{{prev_vals['x7']}}' ></td>
+        <td><input type=text name="y7" value='{{prev_vals['y7']}}' ></td>
+        <td>{{ results[6][-1] }}</td>
+      </tr> 
+ 
+      <tr>
+        <td><input type=text name="x8" value='{{prev_vals['x8']}}' ></td>
+        <td><input type=text name="y8" value='{{prev_vals['y8']}}' ></td>
+        <td>{{ results[7][-1] }}</td>
+      </tr> 
+
+      <tr>
+        <td><input type=text name="x9" value='{{prev_vals['x9']}}' ></td>
+        <td><input type=text name="y9" value='{{prev_vals['y9']}}' ></td>
+        <td>{{ results[8][-1] }}</td>
+      </tr> 
+ 
+      <tr>
+        <td><input type=text name="x10" value='{{prev_vals['x10']}}' ></td>
+        <td><input type=text name="y10" value='{{prev_vals['y10']}}' ></td>
+        <td>{{ results[9][-1] }}</td>
+      </tr> 
+
+       <tr>
+        <td><input type=text name="x11" value='{{prev_vals['x11']}}' ></td>
+        <td><input type=text name="y11" value='{{prev_vals['y11']}}' ></td>
+        <td>{{ results[10][-1] }}</td>
+      </tr>     
+
+      <tr>
+        <td><input type=text name="x12" value='{{prev_vals['x12']}}' ></td>
+        <td><input type=text name="y12" value='{{prev_vals['y12']}}' ></td>
+        <td>{{ results[11][-1] }}</td>
+      </tr> 
+     </table>
+      </div>
+
+      <button class='submit small_filter'>check values</button>
+      </form>
+
+      <form class='otp small_filter' action='/guess_otp' method='POST'>
+        <label>GUESS YOUR OTP > </label>
+        <input type="number" min="0" max="9999" name='guess'>
+        <br><br>
+        <button class='submit' style='margin-block: 20px;'>submit guess</button>
+      </form>
+<p class='decor'>
+        ตัวอย่างซอร์สโค้ดสําหรับคุณ...<br>
+        <a href='/static/Consolas.ttf' style='color: lightblue'>link to font</a>
+</p>
+      <pre class='small_filter'><code>
+from PIL import Image, ImageDraw, ImageFont
+otp_base = 'static/otp_base.png'
+font = ImageFont.truetype('static/Consolas.ttf', 60)
+
+def generate_otp_img(otp: int):
+    otp_img = Image.open(otp_base)
+    text_img = ImageDraw.Draw(otp_img)
+    otp_str = str(otp).zfill(4)
+    text_img.text((77, 32),  otp_str[0], fill=(0, 0, 0), font=font)
+    text_img.text((161, 32), otp_str[1], fill=(0, 0, 0), font=font)
+    text_img.text((245, 32), otp_str[2], fill=(0, 0, 0), font=font)
+    text_img.text((329, 32), otp_str[3], fill=(0, 0, 0), font=font)
+    return otp_img
+
+
+...
+
+
+for i in range(1, 13):
+
+    x = request.form.get(f'x{i}')
+    y = request.form.get(f'y{i}')
+    prev_vals[f'x{i}'] = x
+    prev_vals[f'y{i}'] = y
+
+    try:
+        x, y = int(x), int(y)
+        r, g, b = img.getpixel((x, y))
+        hex_val = f"#{r:02x}{g:02x}{b:02x}"
+      </code></pre> 
+  </div>
+</body>
+</html>

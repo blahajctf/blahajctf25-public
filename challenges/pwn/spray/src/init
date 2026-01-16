@@ -1,0 +1,36 @@
+#!/bin/sh
+
+  if (exec 0</dev/console) 2>/dev/null; then
+      exec 0</dev/console
+      exec 1>/dev/console
+      exec 2>/dev/console
+  fi
+
+  mkdir /home
+  echo 'root:x:0:0:root:/root:/bin/sh' > /etc/passwd
+  echo 'root:x:0:' > /etc/group
+  chmod 644 /etc/passwd
+  chmod 644 /etc/group
+
+  adduser ctf --disabled-password 2>/dev/null
+
+  chown -R root:root /
+  chmod 700 -R /root
+  chown ctf:root /home/ctf
+  chmod 777 /home/ctf
+  chmod 755 /dev
+  chmod u+s /bin/su
+
+  mount -t proc -o nodev,noexec,nosuid proc /proc
+  mount -t sysfs -o nodev,noexec,nosuid sysfs /sys
+  mount -t tmpfs -o "noexec,nosuid,size=10%,mode=0755" tmpfs /run
+
+  ln -sf /proc/mounts /etc/mtab
+
+  echo 1 > /proc/sys/kernel/kptr_restrict
+  echo 1 > /proc/sys/kernel/dmesg_restrict
+  echo 1 > /proc/sys/kernel/perf_event_paranoid
+
+  insmod /lib/modules/spray.ko
+  chmod 666 /dev/spray
+  setsid cttyhack setuidgid 1000 sh

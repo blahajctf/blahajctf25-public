@@ -1,0 +1,7 @@
+name: memecoiner
+author: scuffed
+category: osint
+description: My friend has recently got into memecoin "investment" and I want to find his crypto wallet! He purchased a really popular Solana dog memecoin on 6th Nov 2025 and told me he got it "for a steal" on "Meteora". Find his crypto wallet and see what assets he's got! 
+
+flags:
+  - blahaj{salami_O51N7_in_my_CTF_???}
